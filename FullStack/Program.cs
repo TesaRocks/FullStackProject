@@ -1,4 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<FullStack.Services.IHomeService, FullStack.Services.HomeService>();
 
 // Add services to the container.
 
