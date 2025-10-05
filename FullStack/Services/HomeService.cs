@@ -4,15 +4,16 @@ namespace FullStack.Services
 {
     public class HomeService : IHomeService
     {
-        public Task<Home> GetHomeImageAsync()
+        private readonly IHomeRepository _homeRepository;
+        public HomeService(IHomeRepository homeRepository)
         {
-            var home = new Home
-            {
-                Title = "Welcome to FullStack Application",
-                Description = "This is a sample description for the home image.",
-                ImageUrl = "https://example.com/home-image.jpg"
-            };
-            return Task.FromResult(home);
+            _homeRepository = homeRepository;
+        }
+        public async Task<Home> GetHomeImageAsync()
+        {
+            var home = await _homeRepository.GetHomeImage();
+            return home;
+
         }
     }
 }
